@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="favicon.ico" rel="shortcut icon">
+  <link rel="stylesheet" href="css/style.css">
+  <title></title>  
+  <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+<body>
+  <div class="container">
+
+    <header class="header clearfix">
+      <div class="logo">NOrMAL</div>
+
+      <nav class="menu_main">
+        <ul>
+          <!-- <li class="active"><a href="#">About</a></li> -->
+		  <li><a href="#use">How to use</a></li>
+          <li><a href="#download">Downloads</a></li>
+          
+          <li><a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3371838/">Link to PubMed </a></li>
+        </ul>
+      </nav>
+    </header>
+
+
+
+    <div class="info">
+      <article class="hero clearfix">
+        <div class="col_100">
+          <h1>NOrMAL: Accurate Nucleosome Positioning
+using a Modified Gaussian Mixture Model</h1>
+         <h3> Anton Polishko*,Karine Le Roch**, Nadia Ponts** and Stefano Lonardi* </h3>
+		 *Department of Computer Science and Engineering, University of California, Riverside CA 92521
+		 
+		 <p>**Department of Cell Biology and Neuroscience, University of California, Riverside CA 92521</p>
+<p>          Nucleosomes are the basic elements of DNA chromatin
+structure. They control the packaging of DNA and play a critical
+role in gene regulation by allowing physical access to transcription
+factors. The advent of second-generation sequencing has enabled
+landmark genome-wide studies of nucleosome position for several
+model organisms. Current methods to determine nucleosome
+positioning first compute an occupancy coverage profile by mapping
+nucleosome-enriched sequenced reads to a reference genome;
+then, nucleosomes are placed according to the peaks of the
+coverage profile. These methods are quite accurate on placing
+isolated nucleosomes, but they do not properly handle “overlapping”
+nucleosomes. Also, they can only provide the positions of
+nucleosomes and their occupancy level, while it is very beneficial to
+supply molecular biologists additional information about nucleosomes
+like the probability of placement, the size of DNA fragments enriched
+for nucleosomes, and/or whether nucleosome are well-positioned or
+“fuzzy” in the sequenced cell sample.
+<p>Results: We address these issues by providing a novel method
+based on a parametric probabilistic model. An expectation
+maximization (EM) algorithm is used to infer the parameters of
+the mixture of distributions. 
+        </div>
+		 
+		
+      </article>
+
+
+
+      <article class="article clearfix">
+       <div class="col_33">
+		 <h2>Description</h2>
+         <p> NOrMAL is a command line tool for accurate placing of the nucleosomes. 
+		 It was designed to resolve overlapping nucleosomes and extract extra information ("fuzziness", probability, etc.) of nucleosome placement.
+		 To achieve this goal the tool clusters the input tags according to Nucleosome Model (see the paper for detailed description) using EM learning process.
+		 </p>
+		<p>The tool is written in C++. There are no special requirements except for <code>g++</code> compiler and <code>*nix</code> environment to compile and use the tool. It was checked to compile using g++ compiler under Ubuntu 11.04 and Mac OS X 10.6</p>         		 
+		 
+		 <p> The software is freely available for academic use. The software is still in development and may contain bugs and not 100% bulletproof. </p>
+		  
+		 
+        </div>
+
+        <div class="col_33">
+          <h2>How to install?</h2>
+          <ol>
+			 <li>Download the latest source code <a href="http://code.google.com/p/normal-nucleosome-mapping-algorithm/downloads/list">here</a></li>
+			 <li>Unpack the archive to preferred location <code>*folder*</code></li>
+             <li>Compile using make command within the folder</li>
+			 <p><code> $> cd *folder* </code></p>
+			 <p><code> $> make </code></p>
+             <li>To check the compiled executable evoke</li>
+			 <code> $> make test </code>
+			 <p> The tool will process the small test case and will produce test_results.txt file. It should take not more than ~20 sec.</p> 
+             </ol>
+          
+        </div>
+      
+	  <div class="clearfix"></div>
+        <h1>NOrMAL in use</h1>
+        <div class="col_50">
+		
+          <h3>Input</h3>
+          <p> As the input the executable has 3 input files: configuration, forward and reverse tags. </p>
+		  <p>Configuration file consists of the algorithm parameters. The  config.txt is provided, all the parameters are self-explanatory and could be adjusted to your needs.</p>
+          <p>The main input for the tool is the set of 5' end positions of the forward and reverse mapped nucleosome reads (tags). The tags should be specified in two separate files as the simple list of locations (numbers). </p>
+          <a name="use"></a>
+          <h3>Usage</h3>
+		  
+          <ol>
+			 <li>Specify the parameters of the algorithm in *config_file* (check provided default "config.txt").</a></li>
+			 <li>Provide forward and reverse tags as the simple list of numbers in files *forward_tags* and *reverse_tags* respectively</li>
+             <li>Run the tool using command</li>
+			 <p><code>./NOrMAL *config_file* *forward_tags* *reverse_tags* *output_file*</code></p>
+             <li>The output will be printed in *output_file* using next column format:</li>
+<p>&lt;Position of the nucleosome center&gt; &lt;"Fuzziness"&gt; &lt;Nucleosome Size&gt; &lt;confidence score&gt; &lt;Forward votes&gt; &lt;Reverse votes&gt;</p>
+			
+             </ol>
+        </div>        
+
+        
+
+        <div class="clearfix"></div>
+
+
+
+        <div class="col_50">
+			<a name="download"></a>
+          <h2>Downloads</h2>
+
+          <p>The project is hosted at <a href="http://code.google.com/p/normal-nucleosome-mapping-algorithm/downloads/list">code.google.com</a> 
+
+<!--contains the source code for the NOrMAL tool, the directions on how to use the software are provided in the README.txt file</p>
+		  <p><a href="./DATA.zip">DATA.zip</a> contains the data files and scripts to process them used in the paper (see README_DATA.txt)</p>
+-->
+ <!--         <p class="warning">Sample <code>.warning</code></p>
+          <p class="success">Sample <code>.success</code></p> -->
+          <p class="message"> <a href="http://code.google.com/p/normal-nucleosome-mapping-algorithm/">http://code.google.com/p/normal-nucleosome-mapping-algorithm/</a> </p>
+        </div>
+
+        
+        <div class="clearfix"></div>
+      </article>
+    </div>
+    
+ 
+
+  </div>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32746229-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>
