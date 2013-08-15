@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="favicon.ico" rel="shortcut icon">
+  <link rel="stylesheet" href="css/style.css">
+  <title></title>  
+  <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+<body>
+  <div class="container">
+
+    <header class="header clearfix">
+      <div class="logo">PuFFIN</div>
+
+      <nav class="menu_main">
+        <ul>
+          <!-- <li class="active"><a href="#">About</a></li> -->
+		  <li><a href="#use">How to use</a></li>
+          <li><a href="#download">Downloads</a></li>
+          <li><a href="index.html">link to NOrMAL</a></li>
+         
+        </ul>
+      </nav>
+    </header>
+
+
+
+    <div class="info">
+      <article class="hero clearfix">
+        <div class="col_100">
+          <h1>PuFFIN - A Parameter-free Method to Build Genome-wide Nucleosome Maps from Paired-end Sequencing Data</h1>
+         <h3> Anton Polishko*, Evelien M. Bunnik**, Karine Le Roch** and Stefano Lonardi* </h3>
+		 *Department of Computer Science and Engineering, University of California, Riverside CA 92521
+		 
+		 <p>**Department of Cell Biology and Neuroscience, University of California, Riverside CA 92521</p>
+<p>          We introduce a novel method, called PuFFIN, to build
+genome-wide nucleosome maps specifically designed to take advantage of
+paired-end reads. The availability of paired-end reads enables our
+method to produce a higher number of detected nucleosomes.
+
+In contrast to other approaches that require users to
+optimize several parameters according to their data (e.g., the maximum
+allowed nucleosome overlap or legal ranges for the fragment sizes) our
+method can accurately determine a genome-wide set of non-overlapping
+nucleosomes without any user-defined parameter.  This feature makes
+PuFFIN significantly easier to use and prevents users from
+choosing ``bad'' parameters and obtain suboptimal nucleosome maps.
+
+Here for the first time, we frame the problem of determining
+genome-wide nucleosome locations in a multi-scale (or
+multi-resolution) framework. Our algorithm builds a set of nucleosome
+"landscape functions" at different resolution level, in which each
+function represents the likelihood of a genomic location to be
+occupied by a nucleosome.  After a set of candidate
+nucleosomes is computed for each function, our method produces a
+consensus set that satisfies non-overlapping constraints and maximizes
+the number of nucleosomes.
+
+<p>Results:
+
+We report comprehensive experimental results that
+compares PuFFIN with recently published tools (NSeq,
+NPS, NOrMAL and Template Filtering) on real
+datasets for S. cerevisiae, P. falciparum.  Experimental results show that our approach is
+able to detect more non-overlapping nucleosomes than other available
+tools. </p>
+        </div>
+		 
+		
+      </article>
+
+
+
+      <article class="article clearfix">
+       <div class="col_33">
+		 <h2>Description</h2>
+         <p> PuFFIN is a command line tool for accurate placing of the nucleosomes based on the pair-end reads. 
+		 It was designed to place non-overlapping nucleosomes using extra lenght information present in pair-end data-sets.
+		 </p>
+		<p>The tool is written in python. There are no special requirements except for <code>python2.7+</code>.         		 
+		 
+		 <p> The software is freely available for academic use. The software is still in development and may contain bugs and not 100% bulletproof. </p>
+		  
+		 
+        </div>
+
+        <div class="col_33">
+          <h2>How to install?</h2>
+          <ol>
+			 <li>Download the latest source code <a href="http://bit.ly/1eLMeFI">here</a></li>
+			 <li>Unpack the archive to preferred location <code>*folder*</code></li>
+             <!-- <li>Compile using make command within the folder</li> -->
+			 <p><code> $> cd *folder* </code></p>
+      
+			 <!-- <p><code> $> make </code></p> -->
+             <!-- <li>To check the compiled executable evoke</li> -->
+			 <!-- <code> $> make test </code> -->
+			 <!-- <p> The tool will process the small test case and will produce test_results.txt file. It should take not more than ~20 sec.</p>  -->
+             </ol>
+          
+        </div>
+      
+	  <div class="clearfix"></div>
+        <h1>PuFFIN in use</h1>
+        <div class="col_50">
+		
+          <h3>Input</h3>
+          <p>The input file for the tool should contain the reads only for considered chromosome (contig) and is in a column format obtained by simply parsing the BAM/SAM file. In particularly the columns 4, 8, 9, <code>lengths(10)</code> with left-most position of the read, left-most position of it's mate, lenght of the template and lenghts of the read itself. We provide the shell script to parse BAM file (requires *nix environment and <code>samtools</code>)</p>
+
+          <a name="use"></a>
+          <h3>Usage</h3>
+		      Given that input reads are in input.bam and the sequence name is *chr*
+          <ol>
+            <li><code>./bam2input.sh input.bam *chr*  > input.in </code></li>
+			      <li><code>python puffin.py input.in output_file.out</code></li>
+            <li>The output will be printed in output_file.out using next column format:</li>
+              <p>&lt;Position of the nucleosome center&gt; &lt;width of the peak&gt; &lt;Level of the curve that was used to detect nucleosome &gt; &lt;confidence score&gt; &lt;"Fuzziness"&gt;</p>
+			
+             </ol>
+        </div>        
+
+        
+
+        <div class="clearfix"></div>
+
+
+
+        <div class="col_50">
+			<a name="download"></a>
+          <h2>Downloads</h2>
+            <p class="message"><a href="http://bit.ly/1eLMeFI">puffin.zip</a> </p>
+        </div>
+
+        
+        <div class="clearfix"></div>
+      </article>
+    </div>
+    
+ 
+
+  </div>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32746229-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>
